@@ -1,0 +1,19 @@
+version: '3.8' 
+ 
+services: 
+  postgres: 
+    image: postgres:16 
+    container_name: exam_postgres 
+    environment: 
+      POSTGRES_DB: airline_db 
+      POSTGRES_USER: postgres 
+      POSTGRES_PASSWORD: 1234 
+    ports: 
+      - "5433:5432" 
+    volumes: 
+      - postgres_data:/var/lib/postgresql/data 
+      - ./database:/docker-entrypoint-initdb.d 
+    restart: unless-stopped 
+ 
+volumes: 
+  postgres_data: 
